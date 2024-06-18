@@ -1,0 +1,47 @@
+@model IEnumerable<TodoItem>
+
+<h2>ToDo List</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-md btn-primary">
+        <i class="bi bi-plus-circle-fill"></i>Create
+    </a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Is Completed</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>
+                    @if(item.IsCompleted == true)
+                    {
+                        <span style="color: green;">Completed</span>
+                    }else{
+                        
+                        <span style="color: red;">Not Completed</span>
+                    }
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-md btn-warning">
+                        <i class="bi bi-pencil-square"></i>Edit
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-md btn-danger">
+                        <i class="bi bi-trash-fill"></i>Remove
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
